@@ -1,1 +1,1 @@
-{"name":"Grab & Haul Business Manager","short_name":"Grab & Haul","start_url":"/Grab-and-haul/","display":"standalone","background_color":"#eef2f5","theme_color":"#173f5f"}
+{"name":"Grab & Haul Business Manager","short_name":"Grab & Haul","start_url":"./","scope":"./","display":"standalone","background_color":"#eef2f5","theme_color":"#173f5f","icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]}
