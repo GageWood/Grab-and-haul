@@ -6,6 +6,9 @@
   const money=v=>'$'+Number(v||0).toFixed(2);
 
   function build(){
+    if(!document.getElementById('photoEstimateStyle')){
+      const style=document.createElement('style');style.id='photoEstimateStyle';style.textContent='.photo-preview{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}.photo-preview img{width:100%;height:110px;object-fit:cover;border-radius:8px;border:1px solid #ccc}.photo-preview:empty{display:none}#photoStatus{min-height:20px}';document.head.appendChild(style);
+    }
     const card=document.querySelector('#calculator .card:nth-of-type(2)');
     if(!card||document.getElementById('photoUpload')) return;
     card.innerHTML=`<h2>AI Photo Quote</h2>
@@ -43,7 +46,7 @@
   }
 
   function clear(){
-    $('photoUpload').value='';$('photoPreview').innerHTML='';$('photoStatus').textContent='';$('photoResult').style.display='none';
+    $('photoUpload').value='';$('photoPreview').innerHTML='';$('photoStatus').textContent='';$('photoResult').style.display='none';window.grabHaulPhotoEstimate=null;
   }
 
   function resize(file){return new Promise((resolve,reject)=>{
