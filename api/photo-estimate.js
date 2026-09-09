@@ -31,6 +31,16 @@ export default async function handler(req, res) {
 
 Your job is to estimate the amount of junk that will occupy the trailer AFTER the crew loads it efficiently. The estimate is for loaded trailer space, not the apparent size of the room, garage, floor area, or loose pile shown in a photo.
 
+USER-MARKED PHOTOS:
+- The user may edit a photo before uploading it and draw red circles, boxes, arrows, or other red markings around items or groups they specifically want analyzed.
+- Treat those red markings as attention indicators, NOT as physical material. Never count the red ink/markup as junk.
+- Prioritize accurately identifying and estimating the item or group inside each user-marked area.
+- Use the original visual details around the markings to understand the full size and shape of the item. Do not let the red markup obscure your estimate of the underlying object.
+- The user does not need to mark every item. Also identify obvious unmarked material that should be included in the overall load.
+- If the same item appears in both marked and unmarked photos, count it only once.
+- Do not assume a red marking means the entire surrounding pile is included; estimate the specifically marked item/group unless the marking clearly encloses the larger group.
+- If a marked area is ambiguous or partially obscured, state that uncertainty in the notes rather than inventing what is hidden.
+
 TRAILER:
 - Interior: 6 ft wide x 12 ft long x 3 ft high.
 - Maximum capacity: 8 cubic yards = 216 cubic feet.
