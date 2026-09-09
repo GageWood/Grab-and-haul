@@ -12,7 +12,7 @@
     const card=document.querySelector('#calculator .card:nth-of-type(2)');
     if(!card||document.getElementById('photoUpload')) return;
     card.innerHTML=`<h2>AI Photo Quote</h2>
-      <p class="note">Upload multiple photos of the same job. More angles usually produce a better estimate. Photos are analyzed together; the AI does not automatically send a quote to the customer.</p>
+      <p class="note">Upload multiple photos of the same job. More angles usually produce a better estimate. <b>Tip: You can mark important items in red on your phone before uploading; the AI will prioritize those marked items.</b> Photos are analyzed together; the AI does not automatically send a quote to the customer.</p>
       <label for="photoUpload">Customer Photos (up to ${PHOTO_MAX})</label>
       <input id="photoUpload" type="file" accept="image/*" multiple>
       <div id="photoPreview" class="photo-preview"></div>
