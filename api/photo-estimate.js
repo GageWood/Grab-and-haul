@@ -31,16 +31,28 @@ export default async function handler(req, res) {
 
 Your job is to estimate the amount of junk that will occupy the trailer AFTER the crew loads it efficiently. The estimate is for loaded trailer space, not the apparent size of the room, garage, floor area, or loose pile shown in a photo.
 
-USER-MARKED PHOTOS:
-- If the user has marked a photo in red, estimate ONLY the items indicated by the red marking(s).
-- A red marking may be a complete circle, partial circle, line, arrow, box, or other red mark pointing to or surrounding an item or group.
-- If a red marking is cut off by the edge of the photo, it may continue beyond the visible edge. Estimate ONLY the visible portion of the indicated item or group.
-- Treat red markings as attention indicators, NOT as physical material. Never count the red ink/markup as junk.
-- Do not include unmarked items unless they are clearly part of the marked group.
-- Use the rest of the photo only for context, scale, and understanding the marked item(s).
-- If multiple photos show the same marked item, count it only once.
-- If a marked area is ambiguous or partially obscured, state that uncertainty in the notes rather than inventing what is hidden.
-- If NO red markings are present, estimate the visible material in the photos normally.
+CRITICAL SCOPE RULE — RED MARKINGS:
+- RED MARKINGS DEFINE THE ESTIMATE SCOPE whenever any red marking is present.
+- If the user has marked a photo in red, estimate ONLY the item(s) directly indicated by the red marking(s). Ignore unrelated unmarked material.
+- A red marking may be a complete circle, partial circle, line, arrow, box, bracket, underline, or another obvious red mark pointing to or surrounding an item or group.
+- Do NOT require a closed circle. A partial circle is still a valid scope indicator.
+- If a red marking is cut off by the edge of the photo, treat the marking as continuing beyond the visible image only for understanding what it indicates. Estimate ONLY the visible portion of the indicated item or group. Never invent or estimate hidden material beyond the photo edge.
+- If the red marking crosses or overlaps several objects, include the objects clearly indicated by the marking. If it merely passes near an object, do not automatically include that object.
+- If the marking surrounds a group of loose items, estimate the group as one loadable group and avoid double-counting its individual contents.
+- If a red arrow or line points to an item, estimate the item it clearly points to, not everything near the line.
+- If a marked item is partially obscured, estimate only what can reasonably be seen and state the uncertainty. Do not invent hidden dimensions or contents.
+- Use unmarked portions of the photo ONLY for context, scale, perspective, and understanding the marked item(s). Do not add unmarked material to the volume just because it is visible.
+- If multiple photos show the same item or group, count it only once. Use the clearest view to estimate it.
+- If different red markings identify different items/groups, estimate all clearly marked items/groups together, while avoiding overlap and double-counting.
+- If NO red markings are present in any photo, estimate the visible material normally.
+
+MARKING INTERPRETATION — AVOID HALLUCINATION:
+- Do not assume a red mark identifies an item unless the visual relationship is reasonably clear.
+- Do not infer that the user wants an entire room, garage, wall, floor, or surrounding pile simply because those areas are visible.
+- Do not expand the scope beyond a marked item/group based on what would normally be removed from a job.
+- Do not turn ambiguous red scribbles into specific objects that cannot be identified.
+- If the marked scope is genuinely unclear, keep the estimate conservative and explain exactly what is uncertain.
+- Red markup itself has zero volume and must never affect cubic-yard calculations.
 
 TRAILER:
 - Interior: 6 ft wide x 12 ft long x 3 ft high.
@@ -57,16 +69,17 @@ TRAILER:
 CURRENT CUSTOMER VOLUME PRICING: ${priceText}
 
 PRIMARY ESTIMATING METHOD — ITEMIZE FIRST:
-1. Review every photo together and identify the actual objects. Do not double-count an object visible in multiple photos.
-2. For each meaningful item/group, mentally assign a realistic loaded-space volume based on its physical size, not its visual bounding box.
-3. Add those item volumes together to get a RAW LOADED VOLUME.
-4. Account for practical loading: nesting bikes together, stacking chairs, folding cots, collapsing equipment when reasonable, flattening cardboard, nesting bins, putting bags/boxes inside available cavities, and placing smaller items inside/around larger objects.
-5. Do NOT add a generic safety percentage to the raw total. Uncertainty belongs in the range and confidence, NOT in an automatic upward padding of the recommended volume.
-6. Sanity-check the total against the actual 6x12x3 trailer fractions. Ask whether the objects could realistically occupy 1/8, 1/4, 3/8, 1/2, etc. of the trailer once loaded.
-7. Only recommend 5+ yards when the visible material would realistically consume more than half the trailer after efficient loading. Only recommend 6–8 yards when the material visibly approaches roughly 3/4 to full trailer capacity.
-8. Do not assume hidden rooms, closets, piles, or unseen material. Estimate only what is visible.
-9. A busy-looking photo is NOT automatically a large load. Small household goods, boxes, bags, bins, clothing, cardboard, and collapsible equipment can have a surprisingly small loaded volume.
-10. If the raw itemized estimate is between two whole-yard price tiers, choose the nearest practical whole yard based on the most likely loaded volume. Do not automatically round up. If it is genuinely close to the boundary and underestimating is a meaningful risk, use the higher tier, but explain why.
+1. Review every photo together and identify the actual objects within the defined scope.
+2. Do not double-count an object visible in multiple photos.
+3. For each meaningful item/group, mentally assign a realistic loaded-space volume based on its physical size, not its visual bounding box.
+4. Add those item volumes together to get a RAW LOADED VOLUME.
+5. Account for practical loading: nesting bikes together, stacking chairs, folding cots, collapsing equipment when reasonable, flattening cardboard, nesting bins, putting bags/boxes inside available cavities, and placing smaller items inside/around larger objects.
+6. Do NOT add a generic safety percentage to the raw total. Uncertainty belongs in the range and confidence, NOT in automatic upward padding.
+7. Sanity-check the total against the actual 6x12x3 trailer fractions.
+8. Only recommend 5+ yards when the in-scope material would realistically consume more than half the trailer after efficient loading. Only recommend 6–8 yards when the in-scope material visibly approaches roughly 3/4 to full trailer capacity.
+9. Do not assume hidden material. Estimate only what is visible and within the defined scope.
+10. A busy-looking photo is NOT automatically a large load. Small household goods, boxes, bags, bins, clothing, cardboard, and collapsible equipment can have a surprisingly small loaded volume.
+11. If the raw itemized estimate is between two whole-yard price tiers, choose the nearest practical whole yard based on the most likely loaded volume. Do not automatically round up. If it is genuinely close to the boundary and underestimating is a meaningful risk, use the higher tier and explain why.
 
 ROUGH ITEM VOLUME ANCHORS — USE AS SANITY CHECKS:
 - Small/standard moving box: about 0.1 CY.
@@ -83,22 +96,23 @@ ROUGH ITEM VOLUME ANCHORS — USE AS SANITY CHECKS:
 - Open-frame elliptical/stepper/exercise equipment: estimate the actual loaded footprint after positioning/folding; do not count the empty air around the frame.
 
 IMPORTANT CALIBRATION EXAMPLES:
-- A loveseat + small cabinet + folding cot + printer/papers/small items is generally around 2–2.5 loaded CY, not 4 CY, unless the photos show substantial additional material.
+- A loveseat + small cabinet + folding cot + printer/papers/small items is generally around 2–2.5 loaded CY, not 4 CY, unless the photos show substantial additional material within scope.
 - Several bicycles + folding equipment + shelving/bins + boxes can be around 3–4 CY when loaded efficiently. Do not automatically call this 5–6 CY.
 - A collection of boxes, bags, bins, folded fabric/cushions, and small household goods can easily be around 2–3 CY even when spread across a garage floor.
-These are calibration anchors, not fixed answers. Adjust for what is actually visible.
+These are calibration anchors, not fixed answers. Adjust for what is actually visible and within scope.
 
 RANGE AND CONFIDENCE:
-- The estimated_low and estimated_high should represent a realistic uncertainty range around the itemized loaded estimate.
-- Keep the range reasonably tight when photos are clear. For example, a likely 2.2 CY load might be 2–3, not 2–4 or 3–5.
-- Lower confidence when photos are incomplete, badly angled, or lack scale; do not compensate for poor visibility by inflating volume.
+- estimated_low and estimated_high should represent a realistic uncertainty range around the itemized loaded estimate.
+- Keep the range reasonably tight when the marked scope is clear. A likely 2.2 CY load might be 2–3, not 2–4 or 3–5.
+- Lower confidence when photos are incomplete, badly angled, dark, or lack scale; do not compensate for poor visibility by inflating volume.
 - The recommended_volume is the most likely whole-yard loaded volume, not the high end of the range.
+- When red markings define scope, the range must describe uncertainty in the MARKED MATERIAL ONLY.
 
 HEAVY MATERIAL:
-If concrete, dirt, brick, roofing, tile, soil, or other unusually dense/heavy material is visible, set heavy_material_warning to true and flag the job for a separate heavy-material quote rather than assuming normal junk pricing.
+If concrete, dirt, brick, roofing, tile, soil, or other unusually dense/heavy material is visible AND within the marked scope, set heavy_material_warning to true and flag the job for a separate heavy-material quote rather than assuming normal junk pricing. Unmarked heavy material should not trigger the warning unless there are no red markings and the normal full-photo estimate applies.
 
 SPECIAL ITEMS:
-Identify only obvious special-charge items actually visible, including mattresses, box springs, refrigerators/freezers, window A/C units, large A/C units, TVs/electronics, tires, and tires with rims. Do not invent items. A visible TV/electronic may be a special item but should not inflate its cubic-yard volume.
+Identify only obvious special-charge items actually visible AND within the marked scope, including mattresses, box springs, refrigerators/freezers, window A/C units, large A/C units, TVs/electronics, tires, and tires with rims. Do not invent items. A visible TV/electronic may be a special item but should not inflate its cubic-yard volume.
 
 Return ONLY the requested JSON. The server will enforce the final price from the current pricing table.`
       },
