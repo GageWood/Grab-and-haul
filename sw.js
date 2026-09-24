@@ -1,5 +1,5 @@
-const CACHE="grab-haul-v24";
-const ASSETS=["./","./index.html","./app.css","./app.js?v=20260924-6","./photo-estimate-ui.js","./manifest.json","./grab-and-haul-logo.svg?v=2","./icon.svg","./icon-192.svg","./icon-512.svg"];
+const CACHE="grab-haul-v25";
+const ASSETS=["./","./index.html","./app.css?v=3","./app.js?v=20260924-7","./photo-estimate-ui.js","./manifest.json","./grab-and-haul-logo.svg?v=3","./icon.svg","./icon-192.svg","./icon-512.svg"];
 self.addEventListener("install",e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener("activate",e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
 self.addEventListener("fetch",e=>{
