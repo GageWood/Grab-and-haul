@@ -5,6 +5,7 @@
     <option value="dashboard">Dashboard</option>
     <option value="calculator">Job Calculator</option>
     <option value="expenses">Expenses</option>
+    <option value="rentals">Trailer Rentals</option>
     <option value="history">Job History</option>
     <option value="helpers">Helper Payouts</option>
     <option value="financials">Financials</option>
@@ -20,8 +21,75 @@
 <section id="helpers" class="view"><div class="card"><h2>Helper Payout History</h2><div class="summary">Total Helper Payouts<strong id="helperTotal">$0.00</strong></div><div style="overflow:auto"><table><thead><tr><th>Date</th><th>Helper</th><th>Customer</th><th>Rate</th><th>Payout</th></tr></thead><tbody id="helperRows"></tbody></table></div><p class="note">Only saved jobs with a helper payout appear here.</p></div></section>
 <section id="financials" class="view"><div class="card"><h2>Financial Overview</h2><div class="grid3"><div class="summary">Total Jobs<strong id="finJobs">0</strong></div><div class="summary">Gross Customer Revenue<strong id="finGross">$0</strong></div><div class="summary">Service Revenue<strong id="finService">$0</strong></div><div class="summary">Owner Profit<strong id="finProfit">$0</strong></div><div class="summary">Profit Before Tax<strong id="finBefore">$0</strong></div><div class="summary">Profit Margin<strong id="finMargin">0%</strong></div><div class="summary">Helper Payouts<strong id="finHelper">$0</strong></div><div class="summary">Landfill Costs<strong id="finDump">$0</strong></div><div class="summary">Truck Reserve<strong id="finTruck">$0</strong></div><div class="summary">Trailer Reserve<strong id="finTrailer">$0</strong></div><div class="summary">Other Expenses<strong id="finOther">$0</strong></div><div class="summary">Income Tax Reserve<strong id="finReserve">$0</strong></div><div class="summary">Job Expenses<strong id="finExpenses">$0</strong></div><div class="summary">Business Expenses<strong id="finBusinessExpenses">$0</strong></div><div class="summary">TRUE NET PROFIT<strong id="finTrueProfit">$0</strong></div></div></div><div class="card"><h2>Weekly Financial Breakdown</h2><div style="overflow:auto"><table><thead><tr><th>Week</th><th>Jobs</th><th>Gross Revenue</th><th>Service Revenue</th><th>Helper Pay</th><th>Dump Fees</th><th>Truck Reserve</th><th>Trailer Reserve</th><th>Other Expenses</th><th>Tax Reserve</th><th>Owner Profit</th></tr></thead><tbody id="weeklyRows"></tbody></table></div></div><div class="card"><h2>Monthly Financial Breakdown</h2><div style="overflow:auto"><table><thead><tr><th>Month</th><th>Jobs</th><th>Gross Revenue</th><th>Service Revenue</th><th>Helper Pay</th><th>Dump Fees</th><th>Truck Reserve</th><th>Trailer Reserve</th><th>Other Expenses</th><th>Tax Reserve</th><th>Owner Profit</th></tr></thead><tbody id="financialRows"></tbody></table></div></div></section>
 <section id="expenses" class="view"><div class="card"><h2>Add Business Expense</h2><div class="grid"><div><label>Date</label><input id="expenseDate" type="date"></div><div><label>Amount</label><input id="expenseAmount" type="number" min="0" step="0.01" placeholder="0.00"></div><div><label>Description</label><input id="expenseDescription" placeholder="Fuel fill-up, ratchet straps, trailer payment..."></div><div><label>Category</label><input id="expenseCategory" placeholder="Gas, Tools, Trailer, Supplies..."></div></div><div class="actions" style="margin-top:12px"><button class="primary" onclick="saveExpense()">Add Expense</button><div class="grid" style="margin-top:12px"><div><label>Export From</label><input id="expenseExportFrom" type="date"></div><div><label>Export Through</label><input id="expenseExportTo" type="date"></div></div><div class="actions" style="margin-top:10px"><button onclick="setExpenseExportRange('thisWeek')">This Week</button><button onclick="setExpenseExportRange('lastWeek')">Last Week</button><button onclick="setExpenseExportRange('thisMonth')">This Month</button><button onclick="downloadExpensesCSV()">Download Selected CSV</button></div></div></div><div class="card"><h2>Expense History</h2><div class="summary">Total Business Expenses<strong id="expenseTotal">$0.00</strong></div><div style="overflow:auto"><table><thead><tr><th>Date</th><th>Description</th><th>Category</th><th>Amount</th><th></th></tr></thead><tbody id="expenseRows"></tbody></table></div><p class="note">Categories are completely custom. Type whatever category makes sense for each expense.</p></div></section><section id="dashboard" class="view active"><div class="card"><h2>Business Dashboard</h2><div class="grid3"><div class="summary">Total Jobs<strong id="dJobs">0</strong></div><div class="summary">Service Revenue<strong id="dRevenue">$0</strong></div><div class="summary">Owner Profit<strong id="dProfit">$0</strong></div><div class="summary">Helper Paid<strong id="dHelper">$0</strong></div><div class="summary">Landfill Costs<strong id="dDump">$0</strong></div><div class="summary">Truck Reserve<strong id="dTruck">$0</strong></div><div class="summary">Trailer Reserve<strong id="dTrailer">$0</strong></div><div class="summary">Income Tax Reserve<strong id="dReserve">$0</strong></div><div class="summary">Business Expenses<strong id="dBusinessExpenses">$0</strong></div><div class="summary">True Net Profit<strong id="dTrueProfit">$0</strong></div></div></div></section>
+
+<section id="rentals" class="view">
+  <div class="card">
+    <h2>Trailer Rental</h2>
+    <p class="note">Internal tracking only. Customer signs the printed rental agreement separately.</p>
+    <div class="grid">
+      <div><label>Customer Name</label><input id="rCustomer"></div>
+      <div><label>Phone</label><input id="rPhone"></div>
+      <div><label>Email</label><input id="rEmail" type="email"></div>
+      <div><label>Service Address</label><input id="rAddress"></div>
+      <div><label>Delivery Date / Time</label><input id="rDelivery" type="datetime-local"></div>
+      <div><label>Scheduled Pickup</label><input id="rPickup" type="datetime-local"></div>
+      <div><label>Rental Area / Rate</label><select id="rRate" onchange="rentalCalc()"><option value="125">Within 20 miles — $125</option><option value="150">Outside 20 miles — $150</option></select></div>
+      <div><label>Status</label><select id="rStatus"><option>Reserved</option><option>Delivered</option><option>Picked Up</option><option>Disposal Complete</option><option>Closed</option><option>Cancelled</option></select></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Delivery Checklist</h2>
+    <div class="grid">
+      <label><input id="rIdVerified" type="checkbox"> Government-issued photo ID verified</label>
+      <label><input id="rAgeVerified" type="checkbox"> Customer is 18+</label>
+      <label><input id="rAgreementSigned" type="checkbox"> Printed agreement signed</label>
+      <label><input id="rPropertyAuthorized" type="checkbox"> Property / placement authorization confirmed</label>
+      <label><input id="rPrePhotos" type="checkbox"> Pre-rental trailer photos taken</label>
+      <label><input id="rRentalPaid" type="checkbox"> Rental payment received</label>
+      <label><input id="rDepositPaid" type="checkbox"> $300 deposit received</label>
+    </div>
+    <div class="result"><span>Rental Charge</span><span id="rRentalOut">$125.00</span></div>
+    <div class="result"><span>Disposal & Security Deposit</span><span>$300.00</span></div>
+    <div class="result big"><span>AMOUNT DUE AT DELIVERY</span><span id="rDueOut">$425.00</span></div>
+  </div>
+
+  <div class="card">
+    <h2>Pickup & Disposal</h2>
+    <div class="grid">
+      <div><label>Actual Pickup Date / Time</label><input id="rActualPickup" type="datetime-local"></div>
+      <div><label>Actual Disposal Cost</label><input id="rDisposal" type="number" min="0" step="0.01" value="0" oninput="rentalCalc()"></div>
+      <div><label>Other Authorized Charges</label><input id="rOtherCharges" type="number" min="0" step="0.01" value="0" oninput="rentalCalc()"></div>
+      <div><label>Charge Notes</label><input id="rChargeNotes" placeholder="Extra day, cleanup, special item..."></div>
+      <label><input id="rPostPhotos" type="checkbox"> Pickup / load photos taken</label>
+      <label><input id="rDumpReceipt" type="checkbox"> Disposal receipt saved / provided</label>
+    </div>
+    <div class="result"><span>$300 Deposit</span><span>$300.00</span></div>
+    <div class="result"><span>Disposal Cost</span><span id="rDisposalOut">-$0.00</span></div>
+    <div class="result"><span>Other Charges</span><span id="rOtherOut">-$0.00</span></div>
+    <div class="result big"><span id="rSettlementLabel">REFUND DUE</span><span id="rSettlementOut">$300.00</span></div>
+    <div class="grid" style="margin-top:12px">
+      <label><input id="rSettlementHandled" type="checkbox"> Refund / balance handled</label>
+      <div><label>Internal Notes</label><input id="rNotes" placeholder="Damage notes, disposal details, etc."></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Save Rental</h2>
+    <div class="actions">
+      <button class="primary" onclick="saveRental()">Save Rental</button>
+      <button onclick="newRental()">New Rental</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Rental History</h2>
+    <div style="overflow:auto"><table><thead><tr><th>Delivery</th><th>Customer</th><th>Status</th><th>Rental</th><th>Disposal</th><th>Refund / Balance</th><th></th></tr></thead><tbody id="rentalRows"></tbody></table></div>
+  </div>
+</section>
+
 <section id="settings" class="view"><div class="card"><h2>Business Settings</h2><div class="grid"><div><label>Business Name</label><input id="bizName"></div><div><label>Business Phone</label><input id="bizPhone"></div><div><label>Business Email</label><input id="bizEmail" type="email"></div></div><div class="actions"><button class="primary" onclick="saveSettings()">Save Settings</button></div></div></section></main>
-<div id="invoiceModal" class="modal"><div class="modalbox"><div class="no-print actions"><button onclick="$('invoiceModal').classList.remove('show')">Close</button><button class="primary" onclick="generatePDF()">Save Customer Invoice as PDF</button><button id="emailInvoice">Email Invoice</button></div><h2>Customer Invoice</h2><div id="invoiceText" class="invoice"></div></div></div><script src="app.js?v=20260924-7"></script><script>
+<div id="invoiceModal" class="modal"><div class="modalbox"><div class="no-print actions"><button onclick="$('invoiceModal').classList.remove('show')">Close</button><button class="primary" onclick="generatePDF()">Save Customer Invoice as PDF</button><button id="emailInvoice">Email Invoice</button></div><h2>Customer Invoice</h2><div id="invoiceText" class="invoice"></div></div></div><script src="app.js?v=20260924-7"></script><script src="rentals.js?v=20260930-1"></script><script>
 (function(){
  function go(id){
   document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active')});
